@@ -1,0 +1,50 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+  <div class="ui container">
+        <div class="ui divided items">
+
+          {% for item in LogInfo %}
+            <div class="item">
+            <div class="content">
+              <div class="header">
+                {{ item.caseid }}
+              </div>
+              <div class="description">
+                <p>
+                  {{ item.orgnization }}
+                </p>
+              </div>
+              <div class="extra">
+                <div class="ui label">
+                  {{ item.date }}
+                </div>
+                <div class="ui label">
+                  {{ item.handle_by }}
+                </div>
+              </div>
+            </div>
+            </div>
+          {% endfor %}
+
+        </div>
+
+        <div class="ui small pagination menu">
+          {% if LogInfo.has_previous %}
+            <a href="?page={{ LogInfo.previous_page_number}}" class="active item"> < </a>
+          {% endif %}
+
+          <div class="disabled item">
+            {{ LogInfo.number }} of {{ LogInfo.paginator.num_pages }}
+          </div>
+
+          {% if LogInfo.has_next %}
+            <a href="?page={{ LogInfo.next_page_number }}" class="item"> > </a>
+          {% endif %}
+
+        </div>
+
+      </div>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'default.html' %}
+
+{% block grid %}
+
+      <div class="ui equal width grid" style="width:75%;margin:5px 5px 5px 5px;">
+        <div class="row">
+          <div class="column">
+            <div class="ui simple dropdown item">
+              Menber
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <div class="item" id="andy">Andy</div>
+                <div class="item" id="david">David</div>
+              </div>
+            </div>
+
+            <div class="ui container segment">
+              <div class="container" id="chart1">
+                Top 10 Cities in 2017 by member
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+{% endblock %}
+
+{% block chartsjs %}
+<script>
+      $('#andy').click(function () {
+        $('#chart1').highcharts({
+          credits:{
+              enabled:false
+          },
+          title: {
+              text: 'Top 10 Cities in 2017 by Andy'
+          },
+
+          series: {{ chart_andy|safe }}
+      });
+  });
+</script>
+
+<script>
+      $('#david').click(function () {
+        $('#chart1').highcharts({
+          credits:{
+              enabled:false
+          },
+          title: {
+              text: 'Top 10 Cities in 2017 by David'
+          },
+
+          series: {{ chart_david|safe }}
+      });
+  });
+</script>
+
+
+{% endblock %}
